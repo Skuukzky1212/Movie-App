@@ -37,3 +37,11 @@ body {
   font-family: "Netflix Sans";
   font-weight: 400;
 }
+
+a {
+  transition: 0.3s;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
+}
