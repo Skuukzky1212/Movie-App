@@ -29,9 +29,32 @@ const FeatureMovies = () => {
       });
   }, []);
 
+  useEffect(() => {
+    const getMovieIdByIndex = (indexInput) => {
+      return moviesData[indexInput]?.id;
+    };
+    const autoplay = setInterval(() => {
+      let curSliderIndex;
+      let moviesDataLength = moviesData.length;
+      moviesData &&
+        moviesData.map((item, index) => {
+          if (item.id === activeMovieId) {
+            curSliderIndex = index;
+          }
+          if (curSliderIndex < moviesDataLength - 1) {
+            setActiveMovieId(getMovieIdByIndex(curSliderIndex + 1));
+          } else {
+            setActiveMovieId(getMovieIdByIndex(0));
+          }
+        });
+    }, 5000);
+    return () => clearInterval(autoplay);
+  });
+
   const activeMovieData = moviesData.filter(
     (movie) => movie.id === activeMovieId,
   );
+
   return (
     <div className="relative max-h-[calc(100vh-56px)] overflow-hidden">
       {activeMovieData && (
