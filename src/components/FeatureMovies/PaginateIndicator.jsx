@@ -1,20 +1,18 @@
-import { useRef, useEffect } from "react";
-
-const PaginateIndicator = ({ moviesData, activeMovieId, setActiveMovieId }) => {
-  const timeoutRef = useRef(null);
-
-  useEffect(() => {
-    // Cleanup on unmount
-    return () => clearTimeout(timeoutRef.current);
-  }, []);
-
+const PaginateIndicator = ({
+  moviesData,
+  activeMovieId,
+  setActiveMovieId,
+  animateFadeUpRefs,
+  animateBackdropRef,
+}) => {
   const handleClick = (id) => {
-    // Clear any previous timeout before setting a new one
-    clearTimeout(timeoutRef.current);
-
-    timeoutRef.current = setTimeout(() => {
-      setActiveMovieId(id);
-    }, 2000);
+    animateFadeUpRefs.current.forEach((el) => {
+      if (el) {
+        el?.classList.add("pagi-clicked");
+        animateBackdropRef.current?.classList.add("pagi-clicked");
+      }
+    });
+    setActiveMovieId(id);
   };
 
   return (
@@ -22,7 +20,7 @@ const PaginateIndicator = ({ moviesData, activeMovieId, setActiveMovieId }) => {
       {moviesData?.map((item) => (
         <li
           key={item.id}
-          className={`h-1.5 w-12 cursor-pointer ${activeMovieId === item.id ? "bg-slate-100" : "bg-slate-600"}`}
+          className={`h-2 w-12 cursor-pointer ${activeMovieId === item.id ? "bg-slate-100" : "bg-slate-600"}`}
           onClick={() => handleClick(item.id)}
         ></li>
       ))}

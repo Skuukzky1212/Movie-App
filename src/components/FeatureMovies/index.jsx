@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Movie from "./Movie";
 import PaginateIndicator from "./PaginateIndicator";
+
 const apiAccessToken = import.meta.env.VITE_MOVIE_API_ACCESS_TOKEN;
 const FeatureMovies = () => {
   const [moviesData, setMoviesData] = useState([]);
   const [activeMovieId, setActiveMovieId] = useState();
-
+  const animateFadeUpRefs = useRef([]);
+  const animateBackdropRef = useRef();
   useEffect(() => {
     const optionsFetchDatas = {
       method: "GET",
@@ -47,24 +49,31 @@ const FeatureMovies = () => {
             setActiveMovieId(getMovieIdByIndex(0));
           }
         });
-    }, 5000);
+    }, 6000);
     return () => clearInterval(autoplay);
   });
 
-  const activeMovieData = moviesData.filter(
+  const activeMovieData = moviesData?.filter(
     (movie) => movie.id === activeMovieId,
   );
 
   return (
     <div className="relative max-h-[calc(100vh-56px)] overflow-hidden">
       {activeMovieData && (
-        <Movie key={activeMovieData.id} activeMovieData={activeMovieData} />
+        <Movie
+          key={activeMovieData.id}
+          activeMovieData={activeMovieData}
+          animateFadeUpRefs={animateFadeUpRefs}
+          animateBackdropRef={animateBackdropRef}
+        />
       )}
 
       <PaginateIndicator
         moviesData={moviesData}
         activeMovieId={activeMovieId}
         setActiveMovieId={setActiveMovieId}
+        animateFadeUpRefs={animateFadeUpRefs}
+        animateBackdropRef={animateBackdropRef}
       />
     </div>
   );
