@@ -79,14 +79,14 @@ const Movie = ({ activeMovieData, animateFadeUpRefs, animateBackdropRef }) => {
             </p>
             <p
               ref={(el) => (animateFadeUpRefs.current[4] = el)}
-              className="animate-duration-700 animate-delay-[600ms] line-clamp-7 mb-4"
+              className="animate-duration-700 animate-delay-[600ms] mb-4 line-clamp-4"
             >
               {activeMovieData[0]?.overview}
             </p>
           </div>
           <div
             ref={(el) => (animateFadeUpRefs.current[5] = el)}
-            className="animate-duration-1000 animate-delay-[1200ms] flex items-center"
+            className="animate-duration-1000 animate-delay-[800ms] flex items-center"
           >
             <button className="group relative mr-6 inline-flex cursor-pointer items-center justify-center gap-1 rounded-[4px] border-[2px] border-transparent bg-white px-6 py-2 pl-9 text-[14px] text-black transition-all duration-[0.3s] hover:border-white hover:bg-transparent">
               <i className="absolute bottom-0 left-[20px] top-0 z-[1] m-auto h-[20px] w-[10px] opacity-100 transition-all duration-[0.3s] group-hover:opacity-0">
