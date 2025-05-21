@@ -21,6 +21,7 @@ const FeatureMovies = () => {
       optionsFetchDatas,
     )
       .then(async (res) => {
+        if (!res.ok) throw new Error("HTTP error");
         const data = await res.json();
         const popularMovies = data.results && data.results.slice(0, 4);
         setMoviesData(popularMovies);
