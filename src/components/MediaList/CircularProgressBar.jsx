@@ -1,8 +1,4 @@
-const CircularProgressBar = ({
-  size = 3,
-  percent,
-  strokeWidth = 0.25,
-}) => {
+const CircularProgressBar = ({ size = 3, percent, strokeWidth = 0.25 }) => {
   const halfSize = size / 2;
   const radius = halfSize - strokeWidth;
   return (
@@ -32,7 +28,7 @@ const CircularProgressBar = ({
           x={`${halfSize}vw`}
           y={`${halfSize}vw`}
           fill="white"
-          fontSize="1.2vw"
+          fontSize="1vw"
           alignmentBaseline="middle"
           textAnchor="middle"
         >
