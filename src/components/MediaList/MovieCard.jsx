@@ -1,8 +1,10 @@
-import CircularProgressBar from "./CircularProgressBar";
+import { Link } from "react-router-dom";
+import CircularProgressBar from "../CircularProgressBar";
 const apiUrlImage = import.meta.env.VITE_MOVIE_API_IMAGE_URL;
 
 const MovieCard = ({
   movieData: {
+    id,
     poster_path,
     original_name,
     first_air_date,
@@ -15,7 +17,10 @@ const MovieCard = ({
 }) => {
   const tvShowLabel = media_type || activeTabId;
   return (
-    <div className="group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)]">
+    <Link
+      to={`/movie/${id}/`}
+      className="group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)]"
+    >
       {tvShowLabel && tvShowLabel === "tv" && (
         <p className="absolute right-0 top-0 z-20 rounded-bl-[10px] bg-white px-4 py-2 text-[1.4vw] font-bold text-slate-900 shadow-md">
           TV show
@@ -29,13 +34,15 @@ const MovieCard = ({
         />
       </p>
       <div className="relative flex-1 px-6 py-[2vw]">
-        <CircularProgressBar percent={Math.round(vote_average * 10)} />
+        <div className="absolute top-[-1.5vw]">
+          <CircularProgressBar percent={Math.round(vote_average * 10)} />
+        </div>
         <p className="mt-2 line-clamp-2 break-words font-bold">
           {original_title || original_name}
         </p>
         <p className="text-slate-300">{release_date || first_air_date}</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

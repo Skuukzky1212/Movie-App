@@ -2,7 +2,7 @@ const CircularProgressBar = ({ size = 3, percent, strokeWidth = 0.25 }) => {
   const halfSize = size / 2;
   const radius = halfSize - strokeWidth;
   return (
-    <div className="left-24px absolute top-[-1.5vw]">
+    <div className="left-24px">
       <svg width={`${size}vw`} height={`${size}vw`}>
         <circle
           r={`${radius}vw`}
