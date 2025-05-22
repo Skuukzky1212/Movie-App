@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MovieCard from "./MovieCard";
+import MovieCard from "@components/MovieCard";
 import { useEffect } from "react";
 
 const apiAccessToken = import.meta.env.VITE_MOVIE_API_ACCESS_TOKEN;

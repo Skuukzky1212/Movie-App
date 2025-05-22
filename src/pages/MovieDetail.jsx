@@ -1,9 +1,8 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import Banner from "../components/MediaDetail/Banner";
-import ActorList from "../components/MediaDetail/ActorList";
+import Banner from "@components/MediaDetail/Banner";
+import ActorList from "@components/MediaDetail/ActorList";
 import { CircularProgress } from "@mui/material";
-
 const apiAccessToken = import.meta.env.VITE_MOVIE_API_ACCESS_TOKEN;
 
 const MovieDetail = () => {
@@ -46,7 +45,16 @@ const MovieDetail = () => {
       {!isLoading && (
         <>
           <Banner mediaInfo={movieInfo} />
-          <ActorList />
+          <div className="bg-black text-[1.2vw] text-white">
+            <div className="mx-auto flex max-w-[1300px] gap-6 px-6 py-10">
+              <div className="flex-[2]">
+                <ActorList actors={movieInfo.credits?.cast || []} />
+              </div>
+              <div className="flex-1">
+                <p className="mb-4 text-[1.4vw] font-bold">Information</p>
+              </div>
+            </div>
+          </div>
         </>
       )}
 

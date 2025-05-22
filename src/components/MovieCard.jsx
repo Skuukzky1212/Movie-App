@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import CircularProgressBar from "../CircularProgressBar";
+import CircularProgressBar from "@components/CircularProgressBar";
 const apiUrlImage = import.meta.env.VITE_MOVIE_API_IMAGE_URL;
 
 const MovieCard = ({

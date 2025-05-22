@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import CircularProgressBar from "../CircularProgressBar";
+import CircularProgressBar from "@components/CircularProgressBar";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { groupBy } from "lodash";
 
@@ -28,7 +28,7 @@ const Banner = ({ mediaInfo }) => {
             : "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
         }
       />
-      <div className="relative mx-auto flex max-w-[1800px] gap-6 px-6 py-10 pc:gap-12">
+      <div className="relative mx-auto flex max-w-[1300px] gap-6 px-6 py-10 pc:gap-12">
         <div className="flex-1">
           <img
             src={
