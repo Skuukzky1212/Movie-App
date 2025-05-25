@@ -8,7 +8,7 @@ const ActorList = ({ actors = [] }) => {
 
   return (
     <div className="mb-8">
-      <p className="mb-4 text-[1.4vw] font-bold">Actors</p>
+      <p className="mb-4 text-[1.4vw] font-bold uppercase">Actors</p>
       <div className="grid grid-cols-4 gap-4 sp:grid-cols-2">
         {currentActors.map((actor) => (
           <ActorInfo
