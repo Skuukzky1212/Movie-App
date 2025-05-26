@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CircularProgressBar from "@components/CircularProgressBar";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { groupBy } from "lodash";
+import ImageComponent from "@components/ImageComponent";
 
 const apiUrlImage = import.meta.env.VITE_MOVIE_API_IMAGE_URL;
 
@@ -20,22 +21,29 @@ const Banner = ({ mediaInfo }) => {
 
   return (
     <div className="relative overflow-hidden text-white">
-      <img
+      <ImageComponent
         className="absolute inset-0 h-full w-full object-cover brightness-[.2]"
+        width={600}
+        height={900}
         src={
           mediaInfo?.backdrop_path
             ? `${apiUrlImage}${mediaInfo?.backdrop_path}`
             : "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
         }
+        placeholderImage="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
       />
       <div className="relative mx-auto flex max-w-[1300px] gap-6 px-6 py-10 pc:gap-12">
         <div className="flex-1">
-          <img
+          <ImageComponent
             src={
               mediaInfo.poster_path
                 ? `https://media.themoviedb.org/t/p/w600_and_h900_bestv2${mediaInfo.poster_path}`
                 : "https://i.pinimg.com/736x/01/e1/35/01e135a5bcabe81ce279076de8dfbfd9.jpg"
             }
+            width={600}
+            height={900}
+            alt=""
+            placeholderImage="https://i.pinimg.com/736x/01/e1/35/01e135a5bcabe81ce279076de8dfbfd9.jpg"
           />
         </div>
         <div className="flex-[2] text-[1.2vw]">

@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import CircularProgressBar from "@components/CircularProgressBar";
+import ImageComponent from "@components/ImageComponent";
+
 const apiUrlImage = import.meta.env.VITE_MOVIE_API_IMAGE_URL;
 
 const MovieCard = ({
@@ -19,7 +21,7 @@ const MovieCard = ({
   return (
     <Link
       to={`/movie/${id}/`}
-      className="group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)]"
+      className={`group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)] ${tvShowLabel && tvShowLabel === "tv" && "pointer-events-none"}`}
     >
       {tvShowLabel && tvShowLabel === "tv" && (
         <p className="absolute right-0 top-0 z-20 rounded-bl-[10px] bg-white px-4 py-2 text-[1.4vw] font-bold text-slate-900 shadow-md">
@@ -27,8 +29,10 @@ const MovieCard = ({
         </p>
       )}
       <p className="overflow-hidden">
-        <img
+        <ImageComponent
           src={`${apiUrlImage}${poster_path}`}
+          width={210}
+          height={300}
           alt={original_title}
           className="aspect-auto w-full transition-all duration-[0.4s] group-hover:scale-110"
         />

@@ -1,6 +1,8 @@
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLayoutEffect } from "react";
+import ImageComponent from "@components/ImageComponent";
+
 const apiImageUrl = import.meta.env.VITE_MOVIE_API_IMAGE_URL;
 
 const Movie = ({ activeMovieData, animateFadeUpRefs, animateBackdropRef }) => {
@@ -37,13 +39,16 @@ const Movie = ({ activeMovieData, animateFadeUpRefs, animateBackdropRef }) => {
   return (
     <div>
       <p className="h-full bg-slate-950">
-        <img
+        <ImageComponent
           ref={animateBackdropRef}
           src={
             activeMovieData[0]?.backdrop_path
               ? apiImageUrl + activeMovieData[0]?.backdrop_path
-              : "https://th.bing.com/th/id/R.a91fd967cb61075b6b014dfcfd0e877c?rik=DZWj%2fLYvB%2f9e9A&pid=ImgRaw&r=0"
+              : "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
           }
+          placeholderImage="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
+          width={900}
+          height={500}
           alt=""
           className="block aspect-video h-full w-full object-cover brightness-50 animate-delay-[600ms] animate-duration-[1400ms]"
         />
@@ -70,7 +75,7 @@ const Movie = ({ activeMovieData, animateFadeUpRefs, animateBackdropRef }) => {
           </p>
         </div>
         <div>
-          <div className=" text-[1.2vw] sp:hidden">
+          <div className="text-[1.2vw] sp:hidden">
             <p
               ref={(el) => (animateFadeUpRefs.current[3] = el)}
               className="mb-2 font-bold animate-delay-[500ms] animate-duration-700"

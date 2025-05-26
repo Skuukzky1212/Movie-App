@@ -1,4 +1,5 @@
 import { currencyFormatter } from "@libs/utils";
+import ImageComponent from "@components/ImageComponent";
 
 const MovieInformation = ({
   movieInfo: { original_title, origin_country, budget, revenue, status },
@@ -14,10 +15,10 @@ const MovieInformation = ({
         <strong className="mb-1 block font-bold">Original Country</strong>
         <p className="flex flex-wrap items-center">
           {(origin_country || []).map((country_code) => (
-            <img
+            <ImageComponent
               key={country_code}
               src={`https://flagcdn.com/${country_code.toLowerCase()}.svg`}
-              width="25"
+              width={25}
               alt={country_code.toLowerCase()}
               className="mb-1 mr-1"
             />
