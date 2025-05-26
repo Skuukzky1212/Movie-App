@@ -1,36 +1,18 @@
 import { useState } from "react";
 import MovieCard from "@components/MovieCard";
-import { useEffect } from "react";
-
-const apiAccessToken = import.meta.env.VITE_MOVIE_API_ACCESS_TOKEN;
+import useFetch from "@hooks/useFetch";
 
 const MediaList = ({ mediaTitle, tabsList }) => {
-  const [mediaData, setMediaData] = useState([]);
   const [activeTabId, setActiveTabId] = useState(
     (tabsList && tabsList[0]?.id) || "",
   );
-  useEffect(() => {
-    const apiUrl = tabsList?.find((tab) => tab.id === activeTabId)?.apiUrl;
-    if (!apiUrl) return false;
-    const apiOption = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${apiAccessToken}`,
-      },
-    };
-    fetch(apiUrl, apiOption)
-      .then(async (res) => {
-        if (!res.ok) {
-          throw new Error("Failed Fetch data!");
-        }
-        const dataResponse = await res.json();
-        setMediaData(dataResponse?.results);
-      })
-      .catch((err) => {
-        console.log("Error catch: ", err);
-      });
-  }, [activeTabId, tabsList]);
+
+  const apiUrl = tabsList?.find((tab) => tab.id === activeTabId)?.apiUrl;
+  const { dataFetched: mediaDataResponse } = useFetch({
+    apiUrl: apiUrl,
+  });
+
+  const mediaData = mediaDataResponse?.results || [];
 
   return (
     <div className="bg-slate-950 px-8 py-20 text-[1.2vw] text-white">

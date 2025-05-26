@@ -1,18 +1,19 @@
+const apiHost = import.meta.env.VITE_MOVIE_API_HOST;
 export const TABS_TRENDING = [
   {
     id: "all",
     label: "All",
-    apiUrl: "https://api.themoviedb.org/3/trending/all/day?language=en-US",
+    apiUrl: `${apiHost}/trending/all/day?language=en-US`,
   },
   {
     id: "movie",
     label: "Movie",
-    apiUrl: "https://api.themoviedb.org/3/trending/movie/day?language=en-US",
+    apiUrl: `${apiHost}/trending/movie/day?language=en-US`,
   },
   {
     id: "tv",
     label: "TV Show",
-    apiUrl: "https://api.themoviedb.org/3/trending/tv/day?language=en-US",
+    apiUrl: `${apiHost}/trending/tv/day?language=en-US`,
   },
 ];
 
@@ -20,11 +21,11 @@ export const TABS_TOP_RATED = [
   {
     id: "movie",
     label: "Movie",
-    apiUrl: "https://api.themoviedb.org/3/movie/top_rated?language=en-US",
+    apiUrl: `${apiHost}/movie/top_rated?language=en-US`,
   },
   {
     id: "tv",
     label: "TV Show",
-    apiUrl: "https://api.themoviedb.org/3/tv/top_rated?language=en-US",
+    apiUrl: `${apiHost}/tv/top_rated?language=en-US`,
   },
 ];

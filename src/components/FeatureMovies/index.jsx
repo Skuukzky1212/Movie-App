@@ -1,36 +1,25 @@
 import { useEffect, useState, useRef } from "react";
 import Movie from "./Movie";
 import PaginateIndicator from "./PaginateIndicator";
+import useFetch from "@hooks/useFetch";
+const apiHost = import.meta.env.VITE_MOVIE_API_HOST;
 
-const apiAccessToken = import.meta.env.VITE_MOVIE_API_ACCESS_TOKEN;
 const FeatureMovies = () => {
-  const [moviesData, setMoviesData] = useState([]);
   const [activeMovieId, setActiveMovieId] = useState();
   const animateFadeUpRefs = useRef([]);
   const animateBackdropRef = useRef();
+
+  const { dataFetched: popularMovies } = useFetch({
+    apiUrl: `${apiHost}/movie/popular?language=en-US&page=1`,
+  });
+
+  const moviesData =
+    (popularMovies.results && popularMovies.results.slice(0, 4)) || [];
+
   useEffect(() => {
-    const optionsFetchDatas = {
-      method: "GET",
-      headers: {
-        accept: "application/json",
-        Authorization: `Bearer ${apiAccessToken}`,
-      },
-    };
-    fetch(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
-      optionsFetchDatas,
-    )
-      .then(async (res) => {
-        if (!res.ok) throw new Error("HTTP error");
-        const data = await res.json();
-        const popularMovies = data.results && data.results.slice(0, 4);
-        setMoviesData(popularMovies);
-        setActiveMovieId(popularMovies[0].id);
-      })
-      .catch((err) => {
-        throw new Error("Error here! " + err);
-      });
-  }, []);
+    setActiveMovieId(moviesData[0]?.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(moviesData)]);
 
   useEffect(() => {
     const getMovieIdByIndex = (indexInput) => {
