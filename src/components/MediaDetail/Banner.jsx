@@ -3,10 +3,12 @@ import CircularProgressBar from "@components/CircularProgressBar";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { groupBy } from "lodash";
 import ImageComponent from "@components/ImageComponent";
+import { useModalContext } from "@context/ModalProvider";
+import { useEffect } from "react";
 
 const apiUrlImage = import.meta.env.VITE_MOVIE_API_IMAGE_URL;
 
-const Banner = ({ mediaInfo }) => {
+const Banner = ({ mediaInfo, trailerVideoKey, trailerParam }) => {
   const certification = (
     (mediaInfo.release_dates?.results || []).find(
       (result) => result.iso_3166_1 === "US",
@@ -18,6 +20,22 @@ const Banner = ({ mediaInfo }) => {
     .map((crew) => ({ id: crew.id, job: crew.job, name: crew.name }));
 
   const groupedCrews = groupBy(crews, "job");
+  const { openPopup } = useModalContext();
+  const handleOpenPopup = () => {
+    openPopup(
+      <iframe
+        title="Trailer"
+        src={`https://www.youtube.com/embed/${trailerVideoKey}`}
+        className="aspect-video w-[50vw]"
+      />,
+    );
+  };
+  useEffect(() => {
+    if (trailerParam === "open") {
+      handleOpenPopup();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trailerParam, JSON.stringify(handleOpenPopup)]);
 
   return (
     <div className="relative overflow-hidden text-white">
@@ -66,7 +84,7 @@ const Banner = ({ mediaInfo }) => {
               />
               Rating
             </div>
-            <button>
+            <button onClick={handleOpenPopup}>
               <FontAwesomeIcon icon={faPlay} className="mr-1" />
               Trailer
             </button>

@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "@pages/HomePage.jsx";
 import MovieDetail from "@pages/MovieDetail.jsx";
 import RootLayout from "@pages/RootLayout.jsx";
+import ModalProvider from "@context/ModalProvider";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <ModalProvider>
+      <RouterProvider router={router} />
+    </ModalProvider>
   </StrictMode>,
 );
