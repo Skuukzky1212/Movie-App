@@ -39,14 +39,13 @@ const Movie = ({ activeMovieData, animateFadeUpRefs, animateBackdropRef }) => {
   return (
     <div>
       <p className="h-full bg-slate-950">
-        <ImageComponent
+        <img
           ref={animateBackdropRef}
           src={
             activeMovieData[0]?.backdrop_path
               ? apiImageUrl + activeMovieData[0]?.backdrop_path
               : "https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
           }
-          placeholderImage="https://cdn0.tnwcdn.com/wp-content/blogs.dir/1/files/2022/03/Netflix-Blur-copy.jpg"
           width={900}
           height={500}
           alt=""

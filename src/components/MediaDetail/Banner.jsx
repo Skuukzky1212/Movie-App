@@ -47,7 +47,7 @@ const Banner = ({ mediaInfo }) => {
           />
         </div>
         <div className="flex-[2] text-[1.2vw]">
-          <p className="mb-2 text-[2vw] font-bold">{mediaInfo.title}</p>
+          <p className="mb-2 text-[2vw] font-bold">{mediaInfo?.title}</p>
           <div className="flex items-center gap-4">
             <span className="border border-gray-400 p-1 text-gray-400">
               {certification}
