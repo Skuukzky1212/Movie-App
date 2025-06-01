@@ -1,4 +1,4 @@
-const apiHost = import.meta.env.VITE_MOVIE_API_HOST;
+export const apiHost = import.meta.env.VITE_MOVIE_API_HOST;
 export const TABS_TRENDING = [
   {
     id: "all",

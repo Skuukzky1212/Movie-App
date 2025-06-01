@@ -32,7 +32,14 @@
     url("./media/fonts/NetflixSans-Bold.woff2") format(woff2);
   font-weight: 700;
 }
+*,
+html {
+  scroll-behavior: smooth !important;
+}
 
+html:focus-within {
+  scroll-behavior: smooth;
+}
 body {
   font-family: "Netflix Sans";
   font-weight: 400;
@@ -40,8 +47,8 @@ body {
 
 a {
   transition: 0.3s;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.5;
-  }
+}
+a:hover {
+  cursor: pointer;
+  opacity: 0.5;
 }

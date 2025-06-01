@@ -1,11 +1,10 @@
 import { useParams, useSearchParams } from "react-router-dom";
 import Banner from "@components/MediaDetail/Banner";
 import ActorList from "@components/MediaDetail/ActorList";
-import { CircularProgress } from "@mui/material";
 import MovieInformation from "@components/MediaDetail/MovieInformation";
 import useFetch from "@hooks/useFetch";
 
-const apiHost = import.meta.env.VITE_MOVIE_API_HOST;
+import { apiHost } from "@libs/constants";
 
 const MovieDetail = () => {
   const { id } = useParams();
@@ -40,12 +39,6 @@ const MovieDetail = () => {
           </div>
         </>
       )}
-
-      <div
-        className={`${!isLoading && "pointer-events-none opacity-[0!important] delay-500"} fixed bottom-0 left-0 right-0 top-0 flex items-center justify-center bg-slate-950 opacity-100 transition-all  duration-[0.3s]`}
-      >
-        <CircularProgress size={80} sx={{ color: "red" }} />
-      </div>
     </div>
   );
 };

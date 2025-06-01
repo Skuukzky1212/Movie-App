@@ -17,17 +17,17 @@ const Header = () => {
           />
         </Link>
         <div className="flex items-center gap-2">
-          <a href="#">
-            <span>Phim</span>
+          <a href="/#trending">
+            <span>Trending</span>
           </a>
-          <a href="#">
-            <span>Truyền Hình</span>
+          <a href="/#top-rated">
+            <span>Top Rated</span>
           </a>
         </div>
       </div>
-      <p className="cursor-pointer">
+      <Link to={"/search/"} className="cursor-pointer">
         <FontAwesomeIcon icon={faMagnifyingGlass} />
-      </p>
+      </Link>
     </header>
   );
 };

@@ -7,39 +7,44 @@ const DEFAULT_HEADERS_API = {
   Authorization: `Bearer ${apiAccessToken}`,
 };
 
-const useFetch = ({ apiUrl, method = "GET", headers = {} }) => {
+const useFetch = (
+  { apiUrl, method = "GET", headers = {} },
+  { enabled } = { enabled: true },
+) => {
   const [dataFetched, setDataFetch] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const apiOptions = {
-      method: method,
-      headers: {
-        ...DEFAULT_HEADERS_API,
-        ...headers,
-      },
-    };
-    setIsLoading(true);
-    fetch(apiUrl, apiOptions)
-      .then(async (res) => {
-        if (!res.ok) {
-          if (res.status === 404) {
-            console.error("Resource not found");
-            return;
+    if (enabled) {
+      const apiOptions = {
+        method: method,
+        headers: {
+          ...DEFAULT_HEADERS_API,
+          ...headers,
+        },
+      };
+      setIsLoading(true);
+      fetch(apiUrl, apiOptions)
+        .then(async (res) => {
+          if (!res.ok) {
+            if (res.status === 404) {
+              console.error("Resource not found");
+              return;
+            }
+            throw new Error(`HTTP error! status: ${res.status}`);
           }
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data = await res.json();
-        setDataFetch(data);
-      })
-      .catch((err) => {
-        throw new Error("Error here! ", err);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+          const data = await res.json();
+          setDataFetch(data);
+        })
+        .catch((err) => {
+          throw new Error("Error here! ", err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [apiUrl, method, JSON.stringify(headers)]);
+  }, [apiUrl, method, JSON.stringify(headers), enabled]);
   return { dataFetched, isLoading };
 };
 export default useFetch;

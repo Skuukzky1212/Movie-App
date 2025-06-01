@@ -13,7 +13,7 @@ const ImageComponent = ({
 
   useEffect(() => {
     const img = new Image();
-    if(src) {
+    if (src) {
       img.src = src;
       img.onload = () => {
         setCurrentSrc(src);
@@ -32,7 +32,9 @@ const ImageComponent = ({
       width={width}
       height={height}
       alt={alt}
-      className={currentSrc === src ? className : `${className} blur-md`}
+      className={
+        currentSrc === src || !src ? className : `${className} blur-md`
+      }
     />
   );
 };

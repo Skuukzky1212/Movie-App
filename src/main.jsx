@@ -1,11 +1,13 @@
-import { StrictMode } from "react";
+import { lazy, StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "@pages/HomePage.jsx";
-import MovieDetail from "@pages/MovieDetail.jsx";
-import RootLayout from "@pages/RootLayout.jsx";
+import RootLayout from "@pages/RootLayout";
 import ModalProvider from "@context/ModalProvider";
+import Search from "@pages/Search";
+
+const HomePage = lazy(() => import("@pages/HomePage"));
+const MovieDetail = lazy(() => import("@pages/MovieDetail"));
 
 const router = createBrowserRouter([
   {
@@ -16,6 +18,7 @@ const router = createBrowserRouter([
         element: <HomePage />,
       },
       { path: "/movie/:id", element: <MovieDetail /> },
+      { path: "/search", element: <Search /> },
     ],
   },
 ]);

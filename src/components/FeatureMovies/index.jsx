@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Movie from "./Movie";
 import PaginateIndicator from "./PaginateIndicator";
 import useFetch from "@hooks/useFetch";
-const apiHost = import.meta.env.VITE_MOVIE_API_HOST;
+import { apiHost } from "@libs/constants";
 
 const FeatureMovies = () => {
   const [activeMovieId, setActiveMovieId] = useState();
