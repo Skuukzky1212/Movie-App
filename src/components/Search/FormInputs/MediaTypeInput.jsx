@@ -1,8 +1,9 @@
 const MediaTypeInput = ({ onChange, value, name }) => {
   return (
-    <div>
+    <div className="accent-black">
       <input
         id="sf-mediaType-movie"
+        className="mr-1"
         type="radio"
         name={name}
         value="movie"
@@ -13,6 +14,7 @@ const MediaTypeInput = ({ onChange, value, name }) => {
       <br />
       <input
         id="sf-mediaType-tv"
+        className="mr-1"
         type="radio"
         name={name}
         value="tv"
