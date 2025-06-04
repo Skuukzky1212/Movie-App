@@ -21,10 +21,10 @@ const MovieCard = ({
   return (
     <Link
       to={`/movie/${id}/`}
-      className={`group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)] ${tvShowLabel && tvShowLabel === "tv" && "pointer-events-none"}`}
+      className={` leading-[100%] self-stretch group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)] ${tvShowLabel && tvShowLabel === "tv" && "pointer-events-none"}`}
     >
       {tvShowLabel && tvShowLabel === "tv" && (
-        <p className="absolute right-0 top-0 z-20 rounded-bl-[10px] bg-white px-4 py-2 text-[1.4vw] font-bold text-slate-900 shadow-md">
+        <p className="absolute right-0 top-0 z-20 rounded-bl-[10px] bg-white px-4 py-2 text-[16px] font-bold text-slate-900 shadow-md">
           TV show
         </p>
       )}
@@ -41,7 +41,7 @@ const MovieCard = ({
         <div className="absolute top-[-1.5vw]">
           <CircularProgressBar percent={Math.round(vote_average * 10)} />
         </div>
-        <p className="mt-2 line-clamp-2 break-words font-bold">
+        <p className="my-3 line-clamp-2 break-words font-bold">
           {original_title || original_name}
         </p>
         <p className="text-slate-300">{release_date || first_air_date}</p>
