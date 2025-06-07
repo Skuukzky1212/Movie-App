@@ -21,7 +21,7 @@ const MovieCard = ({
   return (
     <Link
       to={`/movie/${id}/`}
-      className={` leading-[100%] self-stretch group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col overflow-hidden rounded-[10px] border border-slate-800 sp:w-[calc(50%-8px)] ${tvShowLabel && tvShowLabel === "tv" && "pointer-events-none"}`}
+      className={` group relative flex h-full w-[calc(25%-12px)] cursor-pointer flex-col self-stretch overflow-hidden rounded-[10px] border border-slate-800 leading-[100%] sp:w-[calc(50%-8px)] ${tvShowLabel && tvShowLabel === "tv" && "pointer-events-none"}`}
     >
       {tvShowLabel && tvShowLabel === "tv" && (
         <p className="absolute right-0 top-0 z-20 rounded-bl-[10px] bg-white px-4 py-2 text-[16px] font-bold text-slate-900 shadow-md">

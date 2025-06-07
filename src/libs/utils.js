@@ -9,3 +9,14 @@ export const currencyFormatter = (
   });
   return formater.format(number);
 };
+
+export const dateFormatter = (date, locales = "en-US") => {
+  const formatter = new Intl.DateTimeFormat(locales, {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  const dateObj = new Date(date); 
+  return formatter.format(dateObj);
+};

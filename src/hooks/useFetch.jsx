@@ -8,10 +8,10 @@ const DEFAULT_HEADERS_API = {
 };
 
 const useFetch = (
-  { apiUrl, method = "GET", headers = {} },
+  { apiUrl, method = "GET", headers = {}, initValue = {} },
   { enabled } = { enabled: true },
 ) => {
-  const [dataFetched, setDataFetch] = useState({});
+  const [dataFetched, setDataFetch] = useState(initValue);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

@@ -1,9 +1,35 @@
+import Loading from "@components/Loading";
 import RecipeReviewCard from "@components/Mui/RecipeReviewCard";
+import useFetch from "@hooks/useFetch";
+
+const wpApiUrl = import.meta.env.VITE_WP_API_URL;
 
 const Blog = () => {
+  const { dataFetched, isLoading } = useFetch({
+    apiUrl: wpApiUrl + "/blog/",
+    initValue: [],
+  });
+
+  console.log(dataFetched);
+
   return (
     <>
-      <RecipeReviewCard />
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div className="mx-auto flex max-w-[1300px] flex-wrap gap-8 px-6 py-10">
+          {(dataFetched || []).map((item) => (
+            <RecipeReviewCard
+              key={item?.id}
+              title={item?.title?.rendered}
+              shortDescription={item?.acf?.short_description}
+              thumb={item?.featured_image_url || "/ActorNoImage.svg"}
+              date={item?.date_gmt}
+              content={item?.content?.rendered}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
