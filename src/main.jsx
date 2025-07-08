@@ -6,13 +6,14 @@ import RootLayout from "@pages/RootLayout";
 import ModalProvider from "@context/ModalProvider";
 import Search from "@pages/Search";
 import Blog from "@pages/Blog";
+import NotFoundPage from "@pages/NotFoundPage";
 
 const HomePage = lazy(() => import("@pages/HomePage"));
 const MovieDetail = lazy(() => import("@pages/MovieDetail"));
 
 const router = createBrowserRouter([
   {
-    path: "/", // Root layout cho các route chính
+    path: "/",
     element: <RootLayout />,
     children: [
       { path: "/", element: <HomePage /> },
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/blog",
     element: <Blog />,
+  },
+  {
+    path: "*",
+    element: <NotFoundPage />,
   },
 ]);
 

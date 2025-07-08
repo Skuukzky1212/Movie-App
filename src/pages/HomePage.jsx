@@ -6,16 +6,12 @@ function HomePage() {
   return (
     <div className="mct">
       <FeatureMovies />
-      <MediaList
-        idAnc="trending"
-        mediaTitle="Trending"
-        tabsList={TABS_TRENDING}
-      />
-      <MediaList
-        idAnc="top-rated"
-        mediaTitle="Top Rated"
-        tabsList={TABS_TOP_RATED}
-      />
+      <div id="trending">
+        <MediaList mediaTitle="Trending" tabsList={TABS_TRENDING} />
+      </div>
+      <div id="top-rated">
+        <MediaList mediaTitle="Top Rated" tabsList={TABS_TOP_RATED} />
+      </div>
     </div>
   );
 }
