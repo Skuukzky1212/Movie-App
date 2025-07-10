@@ -6,16 +6,14 @@ import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
 import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-// import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 import { dateFormatter } from "@libs/utils";
+import { Link } from "react-router-dom";
 
 const ExpandMore = styled((props) => {
   // eslint-disable-next-line no-unused-vars
@@ -44,6 +42,7 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeReviewCard({
   title,
+  id,
   date,
   thumb,
   shortDescription,
@@ -57,8 +56,8 @@ export default function RecipeReviewCard({
 
   return (
     <Card className="w-[calc(33.333%-22px)] sp:w-full">
-      <CardHeader title={title} subheader={dateFormatter(date)} />
-      <CardMedia component="img" height="194" image={thumb} alt="" />
+      <CardHeader className="[&_.MuiCardHeader-title]:line-clamp-2 [&_.MuiCardHeader-title]:font-bold min-h-[122px] flex !items-start" title={title} subheader={dateFormatter(date)} />
+      <CardMedia className="size-full h-[35%] max-h-[194px] object-cover" component="img" height="194" image={thumb} alt="" />
       <CardContent>
         <Typography
           className="text-"
@@ -69,9 +68,11 @@ export default function RecipeReviewCard({
         </Typography>
       </CardContent>
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
+       <Link to={`/blog/p${id}`}>
+          <IconButton aria-label="detail" >
+            <VisibilityIcon />
+          </IconButton>
+       </Link>
         <IconButton aria-label="share">
           <ShareIcon />
         </IconButton>
@@ -87,6 +88,7 @@ export default function RecipeReviewCard({
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent
           dangerouslySetInnerHTML={{ __html: content }}
+          className="line-clamp-6 overflow-hidden !p-0 m-4"
         ></CardContent>
       </Collapse>
     </Card>
