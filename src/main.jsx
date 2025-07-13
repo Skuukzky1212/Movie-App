@@ -7,6 +7,7 @@ import ModalProvider from "@context/ModalProvider";
 import Search from "@pages/Search";
 import Blog from "@pages/Blog";
 import NotFoundPage from "@pages/NotFoundPage";
+import BlogDetail from "@pages/BlogDetail";
 
 const HomePage = lazy(() => import("@pages/HomePage"));
 const MovieDetail = lazy(() => import("@pages/MovieDetail"));
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/blog",
     element: <Blog />,
+  },
+  {
+    path: "/blog/:id",
+    element: <BlogDetail />,
   },
   {
     path: "*",
