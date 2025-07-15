@@ -9,6 +9,10 @@ import Blog from "@pages/Blog";
 import NotFoundPage from "@pages/NotFoundPage";
 import BlogDetail from "@pages/BlogDetail";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 const HomePage = lazy(() => import("@pages/HomePage"));
 const MovieDetail = lazy(() => import("@pages/MovieDetail"));
 
@@ -38,8 +42,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ModalProvider>
-      <RouterProvider router={router} />
-    </ModalProvider>
+    <QueryClientProvider client={queryClient}>
+      <ModalProvider>
+        <RouterProvider router={router} />
+      </ModalProvider>
+    </QueryClientProvider>
   </StrictMode>,
 );
