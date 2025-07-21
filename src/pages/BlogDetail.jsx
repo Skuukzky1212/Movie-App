@@ -1,6 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useQueryClient, useQuery } from "@tanstack/react-query";
 import Loading from "@components/Loading";
 const wpApiUrl = import.meta.env.VITE_WP_API_URL;
 
@@ -13,6 +13,7 @@ const fetchBlogById = (id) =>
 const BlogDetail = () => {
   const { id } = useParams();
   const currentIdBlog = id.slice(1);
+  const queryClient = useQueryClient();
   const {
     data: blog,
     isPending,
@@ -20,11 +21,13 @@ const BlogDetail = () => {
     refetch,
     isFetching,
   } = useQuery({
-    queryKey: ["blog", currentIdBlog],
+    queryKey: ["blog", String(currentIdBlog)],
     queryFn: () => fetchBlogById(currentIdBlog),
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 30,
     retry: false,
+    initialData: () =>
+      queryClient.getQueryData(["blog", String(currentIdBlog)]),
   });
   useEffect(() => {
     import("../assets/css/blog.css");
@@ -76,17 +79,17 @@ const BlogDetail = () => {
               alt=""
             />
           </p>
-          <p className="list-cats-single">
+          {/* <p className="list-cats-single">
             <span className="bg-white"></span>
             <span className="date"></span>
-          </p>
+          </p> */}
           <h2 className="product-name">{blog?.title?.rendered}</h2>
           <p className="product-desc-2"></p>
         </div>
       </div>
       <div className="sec-main-single">
         <div
-          className="content-sec cmsContent"
+          className="content-sec cmsContent overflow-hidden"
           dangerouslySetInnerHTML={{ __html: blog?.content?.rendered }}
         ></div>
       </div>
@@ -97,7 +100,7 @@ const BlogDetail = () => {
             <a href=""></a>
           </div>
           <div className="all-posts">
-            <a href="">ALL</a>
+            <Link to="/blog/">ALL</Link>
           </div>
           <div className="next-post">
             <a href=""></a>
@@ -105,7 +108,7 @@ const BlogDetail = () => {
         </div>
       </div>
 
-      <div className="sec-main">
+      {/* <div className="sec-main">
         <div className="inner1000">
           <section className="arch-cate">
             <div className="arch-cate__list">
@@ -134,7 +137,7 @@ const BlogDetail = () => {
             </div>
           </section>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

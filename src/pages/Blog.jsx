@@ -1,12 +1,11 @@
 import Loading from "@components/Loading";
 import RecipeReviewCard from "@components/Mui/RecipeReviewCard";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
 const wpApiUrl = import.meta.env.VITE_WP_API_URL;
 
 const Blog = () => {
-  const queryClient = useQueryClient();
   const {
     isPending,
     error,
@@ -61,16 +60,6 @@ const Blog = () => {
                 thumb={item?.featured_media_src_url || "/ActorNoImage.svg"}
                 date={item?.date_gmt}
                 content={item?.content?.rendered}
-                onMouseEnter={() =>
-                  queryClient.prefetchQuery({
-                    queryKey: ["blog", item?.id],
-                    queryFn: () =>
-                      fetch(`${wpApiUrl}/cases/${item?.id}`).then((res) =>
-                        res.json(),
-                      ),
-                    staleTime: 1000 * 60 * 5,
-                  })
-                }
               />
             ))}
         </div>
